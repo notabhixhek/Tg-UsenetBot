@@ -53,7 +53,7 @@ LOGGER(__name__).info("Checking SABnzbd configs....")
 if SAB_IP and SAB_PORT:
     SABNZBD_ENDPOINT = f"http://{SAB_IP}:{SAB_PORT}/sabnzbd/api?apikey={SAB_API_KEY}"
 else:
-    SABNZBD_ENDPOINT = f"https://sab-shizuku.itssoap.ninja/sabnzbd/api?apikey={SAB_API_KEY"
+    SABNZBD_ENDPOINT = f"https://sab-shizuku.itssoap.ninja/sabnzbd/api?apikey={SAB_API_KEY}"
 try:
     response = requests.get(SABNZBD_ENDPOINT, timeout=3)
     response.raise_for_status()
