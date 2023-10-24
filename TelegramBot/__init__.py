@@ -65,11 +65,16 @@ except:
 
 # Checking NZBHydra configs.
 LOGGER(__name__).info("Checking NZBHydra configs....")
-NZBHYDRA_ENDPOINT = f"http://{HYDRA_IP}:{HYDRA_PORT}/api?apikey={HYDRA_API_KEY}"
+if HYDRA_IP and HYDRA_PORT:
+    NZB_URL = f"http://{HYDRA_IP}:{HYDRA_PORT}"
+else:
+    NZB_URL = "https://nzbhydra-shizuku.itssoap.ninja" 
+    
+NZBHYDRA_ENDPOINT = f"{NZB_URL}/api?apikey={HYDRA_API_KEY}"
 NZBHYDRA_URL_ENDPOINT = (
-    f"http://{HYDRA_IP}:{HYDRA_PORT}/getnzb/api/replace_id?apikey={HYDRA_API_KEY}")
+    f"{NZB_URL}/getnzb/api/replace_id?apikey={HYDRA_API_KEY}")
 NZBHYDRA_STATS_ENDPOINT = (
-    f"http://{HYDRA_IP}:{HYDRA_PORT}/api/stats?apikey={HYDRA_API_KEY}")
+    f"{NZB_URL}/api/stats?apikey={HYDRA_API_KEY}")
 try:
     response = requests.get(NZBHYDRA_ENDPOINT, timeout=10)
     response.raise_for_status()
